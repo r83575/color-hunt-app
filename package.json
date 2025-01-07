@@ -1,0 +1,16 @@
+{
+  "name": "color-hunt-server",
+  "version": "1.0.0",
+  "description": "the server of the color hunt project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage":"npm run test -- -- coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/h/תכנות ו תשפה/קבוצה ו-1/רותי כהן/vidislavsky/Node/color-hunt/server"
+  },
+  "author": "ruti cohen",
+  "license": "MIT"
+}
