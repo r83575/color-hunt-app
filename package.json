@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:coverage":"npm run test -- -- coverage"
+    "test:coverage": "npm run test -- --coverage"
   },
   "repository": {
     "type": "git",
     "url": "/h/תכנות ו תשפה/קבוצה ו-1/רותי כהן/vidislavsky/Node/color-hunt/server"
   },
   "author": "ruti cohen",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
