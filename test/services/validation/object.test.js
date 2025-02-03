@@ -69,22 +69,22 @@ describe('REQUIRE FILED VALIDATION',()=>{
             expect(()=>requiredFiledValidation({id:'p6'},{name:'test'})).toThrow('model fields must be defined')
         })
 
-        // it('should throw error when model.fileds is not an array, or its item don\'t contain the name property',()=>{
-        //     expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:558})).toThrow('model.fields field has to be an array of objects with name attribute')
-        //     expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:[7,8]})).toThrow('model.fields field has to be an array of objects with name attribute')
-        //     expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:[{id:1},{id:2}]})).toThrow('model.fields field has to be an array of objects with name attribute')
-        // })
+        it('should throw error when model.fileds is not an array, or its item don\'t contain the name property',()=>{
+            expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:558})).toThrow('model.fields field has to be an array of objects with name attribute')
+            expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:[7,8]})).toThrow('model.fields field has to be an array of objects with name attribute')
+            expect(()=>requiredFiledValidation({id:'3'},{name:'test',fields:[{id:1},{id:2}]})).toThrow('model.fields field has to be an array of objects with name attribute')
+        })
 
-        // it('should throw error when the status is not a string ',()=>{
-        //     expect(()=>requiredFiledValidation({id:6},{fields:[{name:fieldName}]},748)).toThrow('status must be a string')
-        //     expect(()=>requiredFiledValidation({id:6},{fields:[{name:fieldName}]},[])).toThrow('status must be a string')
-        //     expect(()=>requiredFiledValidation({id:6},{fields:[{name:fieldName}]},()=>true)).toThrow('status must be a string')
-        //     expect(()=>requiredFiledValidation({id:6},{fields:[{name:fieldName}]},false)).toThrow('status must be a string')
-        // })
+        it('should throw error when the status is not a string ',()=>{
+            expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},748)).toThrow('status must be a string')
+            expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},[])).toThrow('status must be a string')
+            expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},()=>true)).toThrow('status must be a string')
+            expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},false)).toThrow('status must be a string')
+        })
 
-        // it('should throw error when status is not one of the existing options',()=>{
-        //     expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},'hello')).toThrow('status must be one of the existing options')
-        // })
+        it('should throw error when status is not one of the existing options',()=>{
+            expect(()=>requiredFiledValidation({id:6},{fields:[{name:'fieldName'}]},'hello')).toThrow('status must be one of the existing options')
+        })
     })
 })
 
@@ -128,10 +128,10 @@ describe('REQUIRED TYPE VALIDATION',()=>{
             expect(()=>requiredTypeValidation({id:'p6'},{name:'test'})).toThrow('model fields must be defined')
         })
 
-        // it('should throw error when model.fileds is not an array, or its item don\'t contain the name property',()=>{
-        //     expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:558})).toThrow('model.fields field has to be an array of objects with name attribute')
-        //     expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:[7,8]})).toThrow('model.fields field has to be an array of objects with name attribute')
-        //     expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:[{id:1},{id:2}]})).toThrow('model.fields field has to be an array of objects with name attribute')
-        // })
+        it('should throw error when model.fileds is not an array, or its item don\'t contain the name property',()=>{
+            expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:558})).toThrow('model.fields field has to be an array of objects with name attribute')
+            expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:[7,8]})).toThrow('model.fields field has to be an array of objects with name attribute')
+            expect(()=>requiredTypeValidation({id:'3'},{name:'test',fields:[{id:1},{id:2}]})).toThrow('model.fields field has to be an array of objects with name attribute')
+        })
     })
 })
