@@ -17,7 +17,7 @@ const modelTest = {
                 [modelState.INSERT]: true,
                 [modelState.UPDATE]: false,
                 [modelState.DELETE]: false,
-            }, type: 'number'
+            }, type: (val)=> typeof val === 'number'||(typeof val === 'string'&& isNaN(val))||val instanceof Number
         }, {
             name: 'name', required: {
                 [modelState.INSERT]: true,
@@ -37,18 +37,18 @@ const modelTest = {
 describe('REQUIRE FILED VALIDATION',()=>{
     it('should return true when all required fields are present',()=>{
         const obj={code:7483,name:'test'}
-        const response =requiredFiledValidation(obj,modelTest,modelState.INSERT)
+        const response = requiredFiledValidation(obj,modelTest,modelState.INSERT)
         expect(response).toBeTruthy()
     })
 
-    // it('should return an array of the required properties that are not present',()=>{
-    //     const obj={id:'test_id',items:[]}
-    //     const response =requiredFiledValidation(obj,modelTest,modelState.INSERT)
-    //     expect(response).toBeInstanceOf(Array)
-    //     expect(response.length).toBe(2)
-    //     expect(response).toContain('name')
-    //     expect(response).toContain('code')
-    // })
+    it('should return an array of the required properties that are not present',()=>{
+        const obj={id:'test_id',items:[]}
+        const response =requiredFiledValidation(obj,modelTest,modelState.INSERT)
+        expect(response).toBeInstanceOf(Array)
+        expect(response.length).toBe(2)
+        expect(response).toContain('name')
+        expect(response).toContain('code')
+    })
 
     describe('ERRORS',()=>{
 

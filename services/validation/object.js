@@ -34,15 +34,34 @@ function requiredFiledValidation(obj, model, status = modelState.INSERT) {
     if (!(Object.values(modelState).includes(status))) {
         throw TypeError('status must be one of the existing options')
     }
-    // return model.fields.every(field => field.required.status === obj.includes(field.name))
-    for (let i = 0; i < model.fields.length; i++) {
-        if (model.fields[i].required.status) {
-            if (!obj.includes(model.fields[i].name)) {
-                return false
-            }
-        }
+    let arr=[]
+    model.fields.map((field)=>field.required[status]?(!(field.name in obj)?arr.push(field.name):true):true)
+    if(arr.length===0){
+        return true
     }
-    return true
+    return arr
+    // let res=true
+    // for (let i = 0; i < model.fields.length; i++) {
+    //     if (model.fields[i].required[status]) {                   
+    //         if (!(model.fields[i].name in obj)) {
+    //             res = false
+    //         }
+    //     }
+    // }
+    // if(res){
+    //     return true
+    // }
+    // else{
+    //     let arr=[]
+    //     for (let i = 0; i < model.fields.length; i++) {
+    //         if (model.fields[i].required[status]) {
+    //             if (!(model.fields[i].name in obj)) {
+    //                 arr.push(model.fields[i].name)
+    //             }
+    //         }
+    //     }
+    //     return arr;
+    // }
 }
 /*
 the function gets an object to check that all properties types are  as required
@@ -62,6 +81,7 @@ function requiredTypeValidation(obj, model) {
     if (!validateModel(model)) {
         throw TypeError('model.fields field has to be an array of objects with name attribute')
     }
+    
 }
 
 module.exports = {
