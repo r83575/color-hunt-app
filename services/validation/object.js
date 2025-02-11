@@ -34,12 +34,9 @@ function requiredFiledValidation(obj, model, status = modelState.INSERT) {
     if (!(Object.values(modelState).includes(status))) {
         throw TypeError('status must be one of the existing options')
     }
-    let arr=[]
-    model.fields.map((field)=>field.required[status]?(!(field.name in obj)?arr.push(field.name):true):true)
-    if(arr.length===0){
-        return true
-    }
-    return arr
+    let arr = []
+    model.fields.map((field) => field.required[status] ? (!(field.name in obj) ? arr.push(field.name) : true) : true)
+    return arr.length ? arr : true
     // let res=true
     // for (let i = 0; i < model.fields.length; i++) {
     //     if (model.fields[i].required[status]) {                   
@@ -63,6 +60,7 @@ function requiredFiledValidation(obj, model, status = modelState.INSERT) {
     //     return arr;
     // }
 }
+
 /*
 the function gets an object to check that all properties types are  as required
 the function return true, when the object is valid
@@ -81,7 +79,13 @@ function requiredTypeValidation(obj, model) {
     if (!validateModel(model)) {
         throw TypeError('model.fields field has to be an array of objects with name attribute')
     }
-    
+    const typeOfValiditions = model.fields.filter(({ type }) => typeof type === 'string')
+    const functionValidations = model.fields.filter(({ type }) => type instanceof Function)
+
+    const typeErrors = typeOfValiditions.filter(({ name, type }) => obj[name] && typeof obj[name] !== type)
+    const functionErrors = functionValidations.filter(({ name, type }) => obj[name] && type(obj[name]) === false)
+    const response = [...typeErrors, ...functionErrors].map(({ name }) => name)
+    return response.length ? response : true
 }
 
 module.exports = {
