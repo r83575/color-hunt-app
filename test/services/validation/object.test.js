@@ -110,7 +110,6 @@ describe('REQUIRED TYPE VALIDATION', () => {
     it('should return an array of the properties that their type is not as required', () => {
         const obj = { name: 12, id: '111', code: 456, items: 'list', count: 'help' }
         const response = requiredTypeValidation(obj, modelTest)
-        console.log({ response })
         expect(response).toBeInstanceOf(Array)
         expect(response.length).toBe(3)
         expect(response).toContain('name')
