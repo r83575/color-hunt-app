@@ -69,4 +69,4 @@ function createPalette(palette) {
 module.exports = { createPalette }
 
 console.log(
-    createPalette({ userName: 'abc', colors: [['25', '168', '203'], ['25', '168', '100'], '#a68B12', '#a68B13'] }, model))
+    createPalette({ userName: 'abc', colors: [['25', '168', '203'], ['25', '168', '100'], '#a68B12', '#a68B13'] },model))

@@ -40,7 +40,7 @@ describe('DATA CONTAINS VALUE', () => {
 
         })
         it('should throw error when the value is not defined', () => {
-
+            
         })
     })
 })
