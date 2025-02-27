@@ -37,10 +37,7 @@ describe('DATA CONTAINS VALUE', () => {
             expect(() => dataContainsValue('str')).toThrow('data must be an array')
             expect(() => dataContainsValue(123)).toThrow('data must be an array')
             expect(() => dataContainsValue(true)).toThrow('data must be an array')
-
         })
-        it('should throw error when the value is not defined', () => {
-            
-        })
+        
     })
 })

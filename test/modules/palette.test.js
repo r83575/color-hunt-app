@@ -35,9 +35,18 @@ describe('CREATE PALETTE', () => {
             
         })
         it('should throw when not all colors are from the correct type',()=>{
-            isHEXColor.mockReturnValue()
-            isRGBColor.mockReturnValue()
+            isHEXColor().mockReturnValue()
+            isRGBColor().mockReturnValue()
             expect(() => createPalette({ palette })).toThrow('the colors are not from real colors')
         })
     })
 })
+//mock
+// expect(readAll).toHaveBeenCalledWith(model)
+// expect(fs.mkdirSync).not.toHaveBeenCalled()
+
+// expect(response).toBe(false)
+// expect(response).toContain('name')
+// expect(response).toBeInstanceOf(Array)
+// expect(response).toContain('name')
+// expect(fs.existsSync).toEqual(ARRAY)

@@ -30,12 +30,11 @@ describe('IS RGB COLOR', () => {
 
     describe('ERRORS', () => {
         it('should throw error when not all values are numeric', () => {
-            // const color = ['1?','2','3']
-           
+            expect(() => isRGBColor([{x:'a'},25, 168])).toThrow('expected the values of the color to have a numeric value')           
         })
 
         it('should throw error when color are not an array parameter', () => {
-
+            expect(() => isRGBColor('abc')).toThrow('the color are not an array parameter')           
         })
     })
 })
@@ -65,10 +64,8 @@ describe('IS HEX COLOR', () => {
 
     describe('ERRORS', () => {
         it('should throw error when the color parameter is not a string', () => {
-            
+            expect(() => isHEXColor(123)).toThrow( 'the color is not array and not string')
         })
-
-    
     })
 })
 

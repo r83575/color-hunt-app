@@ -9,6 +9,11 @@ jest.mock('path')
 jest.mock('../../../services/db/read')
 
 describe('ADD ITEM', () => {
+    afterEach(() => {
+        fs.existsSync.mockReset()
+        fs.writeFileSync.mockReset()
+    })
+
     it('should add an item to existing data from data base', () => {
         const model = 'test'
         readAll.mockReturnValue([{ x: 4, y: 5 }])
@@ -36,33 +41,41 @@ describe('ADD ITEM', () => {
 
     describe('ERRORS', () => {
         const model = 'test'
+        const item =  { x: 1, y: 2 }
         it('should throw error when fs.writeFileSync throws error', () => {
             fs.writeFileSync.mockImplementation(() => { throw Error('error from mock writeFileSync') })
-            expect(() => addItem({ model })).toThrow('error from mock writeFileSync')
+            expect(() => addItem( model,item)).toThrow('error from mock writeFileSync')
+            // fs.writeFileSync.mockReset()
         })
 
         it('should throe error when path.join throws error', () => {
             path.join.mockImplementation(() => { throw Error('error from mock join') })
-            expect(() => addItem({ model })).toThrow('error from mock join')
+            expect(() => addItem( model , item)).toThrow('error from mock join')
+            // path.join.mockReset()
         })
 
         it('should throw error when fs.mkdirSync throws erre', () => {
             fs.mkdirSync.mockImplementation(() => { throw Error('error from mock mkdirSync') })
-            expect(() => addItem({ model })).toThrow('error from mock mkdirSync')
+            expect(() => addItem( model , item)).toThrow('error from mock mkdirSync')
+            // fs.mkdirSync.mockReset()
         })
 
         it('should throw error when readAll throws error', () => {
-            readAll.mockImplementation(() => { throw Error('error from mock readall') })
-            expect(() => addItem({ model })).toThrow('error from mock readall')
+            readAll.mockImplementation(() => { throw Error('error from mock readAll')})
+            expect(() => addItem( model , item )).toThrow('error from mock readAll')
+            // readAll.mockReset()
         })
 
-        it('should throw error when item is undefined', () => {       
-            readAll.mockImplementation()    
-            expect(() => addItem({ model })).toThrow('Cannot read properties of undefined (reading \'push\')')
+        it('should throw error when item is undefined', () => {
+            // readAll.mockImplementation(() => { throw TypeError('the model is not string') })
+            expect(() => addItem(model).toThrow('the item must be defined'))
+            // readAll.mockReset()
         })
 
         it('should throw error when the model is not a string', () => {
-           
+            // readAll.mockImplementation(()=>{ throw TypeError('the model is not string')})
+            expect(() => addItem([],item)).toThrow('the model is not string')
         })
+
     })
 })
