@@ -21,7 +21,6 @@ function addItem(model, item) {
         }
         const filePath = path.join(DATA_BASE_PATH, `${model}.json`)
         fs.writeFileSync(filePath, JSON.stringify(data))
-        //JSON.stringify ממירה את האוביקט ל - json
 
     } catch (error) {
         throw error

@@ -37,28 +37,6 @@ function requiredFiledValidation(obj, model, status = modelState.INSERT) {
     let arr = []
     model.fields.map((field) => field.required[status] ? (!(field.name in obj) ? arr.push(field.name) : true) : true)
     return arr.length ? arr : true
-    // let res=true
-    // for (let i = 0; i < model.fields.length; i++) {
-    //     if (model.fields[i].required[status]) {                   
-    //         if (!(model.fields[i].name in obj)) {
-    //             res = false
-    //         }
-    //     }
-    // }
-    // if(res){
-    //     return true
-    // }
-    // else{
-    //     let arr=[]
-    //     for (let i = 0; i < model.fields.length; i++) {
-    //         if (model.fields[i].required[status]) {
-    //             if (!(model.fields[i].name in obj)) {
-    //                 arr.push(model.fields[i].name)
-    //             }
-    //         }
-    //     }
-    //     return arr;
-    // }
 }
 
 /*
