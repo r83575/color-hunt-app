@@ -5,7 +5,7 @@ const { isHEXColor, isRGBColor } = require('../services/validation/color')
 const { modelState, requiredFiledValidation, requiredTypeValidation } = require('../services/validation/object')
 
 const model = {
-    name: 'palette',
+    name: "palette",
     fields: [
         {
             name: 'id',
@@ -44,7 +44,7 @@ function createPalette(palette) {
     if (typeValidations instanceof Array) {
         throw TypeError(`there following are not in the correct type: ${typeValidations.join(',')}`)
     }
-    const { colors } = palette
+    const { colors } = palette   
     if (colors.length !== 4) {
         throw Error(`the palette needs 4 colors, but got ${colors.length}`)
     }
@@ -56,8 +56,13 @@ function createPalette(palette) {
     if (!validColors) {
         throw Error('the colors are not from real colors')
     }
-    const id = colors.reduce((id, cl) => id += typeof cl === 'string' ? cl : id + convertRGBtoHEX(cl), '')
-    const exist = getByCondition(model.name, { id })[0]               
+    const id = colors.reduce((id, cl) => id += typeof cl === 'string' ? cl : convertRGBtoHEX(cl), '')
+    // console.log(id);
+    
+    // console.log(model.name);
+    // console.log({id});    
+    const exist = getByCondition(model.name, { id })[0]      
+    // console.log(exist);
     if (!exist) {
         palette.id = id
         addItem(model.name, palette)
@@ -68,5 +73,6 @@ function createPalette(palette) {
 
 module.exports = { createPalette }
 
-console.log(
-    createPalette({ userName: 'abc', colors: [['25', '168', '203'], ['25', '168', '100'], '#a68B12', '#a68B13'] },model))
+// console.log(createPalette({ userName: 'abc', colors: [[56, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'] }))
+// console.log(createPalette({ userName: 'abc', colors: [['123','234','123'], ['122','234','123'], '#a12b54', '#b15a46'] }))
+// console.log(createPalette({ userName: 'abc', colors: [[55, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'] }))

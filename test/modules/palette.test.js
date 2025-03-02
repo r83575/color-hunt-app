@@ -11,33 +11,87 @@ jest.mock('../../services/convert')
 jest.mock('../../services/db/read')
 jest.mock('../../services/db/write')
 
+const model = {
+    name: "palette",
+    fields: [
+        {
+            name: 'id',
+            required: {
+                [modelState.INSERT]: false,
+                [modelState.UPDATE]: true,
+                [modelState.DELETE]: true
+            },
+            type: 'string'
+        }, {
+            name: 'userName',
+            required: {
+                [modelState.INSERT]: true,
+                [modelState.UPDATE]: false,
+                [modelState.DELETE]: false
+            },
+            type: 'string'
+        }, {
+            name: 'colors',
+            required: {
+                [modelState.INSERT]: true,
+                [modelState.UPDATE]: false,
+                [modelState.DELETE]: false
+            },
+            type: (val) => val instanceof Array
+        }
+    ]
+}
+
+const palette = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'] }
+
 describe('CREATE PALETTE', () => {
-     
-    it('should return and create new palette',()=>{
-        convertRGBtoHEX.mockReturnValue()
-        addItem.toHaveBeenCalledWith()
+
+    afterEach(() => {
+        requiredFiledValidation.mockReset()
+        requiredTypeValidation.mockReset()
     })
 
+    // it('should return and create new palette',()=>{
+    //     // convertRGBtoHEX.mockReturnValue()   
+    //     getByCondition.mockReturnValue(undefined)     
+    //     expect(getByCondition).toHaveBeenCalledWith(model.name,{'id':'#36E655#0C050B#a68B12#a68B13'})
+    //     getByCondition.mockReturnValue(undefined)
+    //     expect(addItem).toHaveBeenCalledWith(model.name,palette)
+    //     const response = createPalette(palette)
+    //     expect(response).toEqual({ userName: 'abc', colors: [['25', '168', '203'], ['25', '168', '100'], '#a68B12', '#a68B13'] })
+    // })
+
     describe('ERRORS', () => {
-        it('should throw error when requiredFiledValidation dont return Array',()=>{
-            requiredFiledValidation.mockReturnValue() 
-            expect(() => createPalette({ palette })).toThrow('the following properties are missing: ${requiredFields.join(', ')}')//לשנות את מה שאחרי ה-$
+
+        it('should throw error when requiredFiledValidation dont return Array', () => {
+            requiredFiledValidation.mockReturnValue(['name', 'id'])
+            expect(() => createPalette()).toThrow('the following properties are missing: name, id')
         })
-        it('should throw error when requiredTypeValidation dont return Array',()=>{
-            requiredTypeValidation.mockReturnValue()
-            expect(() => createPalette({ palette })).toThrow('not all colors are from the correct type (string or array with numbers)')
+
+        it('should throw error when requiredTypeValidation dont return Array', () => {
+            requiredTypeValidation.mockReturnValue(['name'])
+            expect(() => createPalette()).toThrow('there following are not in the correct type: name')
         })
-        it('should throw error when the colors length is less from 4',()=>{
-            expect(() => createPalette({ palette })).toThrow('the palette needs 4 colors, but got ${colors.length}')//לשנות את מה שאחרי ה-$
+
+        it('should throw error when the colors length is less from 4', () => {
+            const palette1 = { userName: 'abc', colors: [[12, 5, 11], '#a68B12', '#a68B13'] }
+            const colors1 = palette1.colors
+            expect(() => createPalette(palette1)).toThrow(`the palette needs 4 colors, but got ${colors1.length}`)
+            const palette2 = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13', [12, 12, 12]] }
+            const colors2 = palette2.colors
+            expect(() => createPalette(palette2)).toThrow(`the palette needs 4 colors, but got ${colors2.length}`)
         })
+
+        it('should throw when not all colors are from the correct type', () => {
+            const palette = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], 12, '#a68B13'] }
+            expect(() => createPalette(palette)).toThrow('not all colors are from the correct type (string or array with numbers)')
+        })
+
         it('should throw when not all colors are from the correct type',()=>{
-            expect(() => createPalette({ palette })).toThrow('not all colors are from the correct type (string or array with numbers)')
-            
-        })
-        it('should throw when not all colors are from the correct type',()=>{
-            isHEXColor().mockReturnValue()
-            isRGBColor().mockReturnValue()
-            expect(() => createPalette({ palette })).toThrow('the colors are not from real colors')
+            const palette1 = { userName: 'abc', colors: [[12,54, 230, 85], [12, 5, 11],'#a68B12', '#a68B13'] }
+            const palette2 = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11],'#a68B12', '#a68B?2'] }
+            expect(() => createPalette(palette1)).toThrow('the colors are not from real colors')
+            expect(() => createPalette(palette2)).toThrow('the colors are not from real colors')
         })
     })
 })

@@ -6,9 +6,9 @@ const { DATA_BASE_PATH = 'C:/temp-db' } = process.env
 
 function readAll(model) {
     try {
-        if(typeof(model)!="string"){
+        if (typeof (model) != "string") {
             throw TypeError('the model is not string')
-        } 
+        }
         const filePath = path.join(DATA_BASE_PATH, `${model}.json`)
         if (fs.existsSync(filePath)) {
             const data = fs.readFileSync(filePath)
@@ -31,7 +31,7 @@ function getByCondition(model, condition) {
     try {
         const collection = readAll(model)
         if (condition) {
-            if (!condition || ['string', 'boolean', 'number'].includes(typeof condition) || [Array, Number, String, RegExp, Function].some(i => condition instanceof i)) {
+            if (['string', 'boolean', 'number'].includes(typeof condition) || [Array, Number, String, RegExp, Function].some(i => condition instanceof i)) {
                 throw TypeError('the condition is not an object or undefined')
             }
             const response = collection.filter(item => Object.entries(condition)

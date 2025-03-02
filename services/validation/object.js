@@ -42,7 +42,7 @@ function requiredFiledValidation(obj, model, status = modelState.INSERT) {
 /*
 the function gets an object to check that all properties types are  as required
 the function return true, when the object is valid
-the function return an array with the properties names of properties thst are not from thr required type
+the function return an array with the properties names of properties that are not from the required type
 */
 function requiredTypeValidation(obj, model) {
     if (!obj || ['string', 'boolean', 'number'].includes(typeof obj) || [Array, Number, String, RegExp, Function].some(i => obj instanceof i)) {
