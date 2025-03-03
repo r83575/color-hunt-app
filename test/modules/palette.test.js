@@ -7,7 +7,7 @@ const { modelState, requiredFiledValidation, requiredTypeValidation } = require(
 
 jest.mock('../../services/validation/color')
 jest.mock('../../services/validation/object')
-jest.mock('../../services/convert')
+// jest.mock('../../services/convert')
 jest.mock('../../services/db/read')
 jest.mock('../../services/db/write')
 
@@ -49,17 +49,48 @@ describe('CREATE PALETTE', () => {
     afterEach(() => {
         requiredFiledValidation.mockReset()
         requiredTypeValidation.mockReset()
+        getByCondition.mockReset()
+        isHEXColor.mockReset()
+        isRGBColor.mockReset()
+        addItem.mockReset()
     })
 
-    // it('should return and create new palette',()=>{
-    //     // convertRGBtoHEX.mockReturnValue()   
-    //     getByCondition.mockReturnValue(undefined)     
-    //     expect(getByCondition).toHaveBeenCalledWith(model.name,{'id':'#36E655#0C050B#a68B12#a68B13'})
-    //     getByCondition.mockReturnValue(undefined)
-    //     expect(addItem).toHaveBeenCalledWith(model.name,palette)
-    //     const response = createPalette(palette)
-    //     expect(response).toEqual({ userName: 'abc', colors: [['25', '168', '203'], ['25', '168', '100'], '#a68B12', '#a68B13'] })
-    // })
+    it('should return and create new palette', () => {
+        requiredFiledValidation.mockReturnValue(true)
+        requiredTypeValidation.mockReturnValue(true)
+        isHEXColor.mockReturnValue(true)
+        isRGBColor.mockReturnValue(true)
+        // convertRGBtoHEX.mockReturnValue()          
+        getByCondition.mockReturnValue([])
+        const response = createPalette(palette)
+        expect(response).toEqual({ userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'], id: "#36E655#0C050B#a68B12#a68B13" })
+        expect(getByCondition).toHaveBeenCalledWith(model.name, { 'id': '#36E655#0C050B#a68B12#a68B13' })
+        expect(addItem).toHaveBeenCalled()
+    })
+
+    it('should return and create new palette', () => {
+        requiredFiledValidation.mockReturnValue(true)
+        requiredTypeValidation.mockReturnValue(true)
+        isHEXColor.mockReturnValue(true)
+        isRGBColor.mockReturnValue(true)
+        // convertRGBtoHEX.mockReturnValue()          
+        getByCondition.mockReturnValue([])
+        const response = createPalette(palette)
+        expect(response).toEqual({ userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'], id: "#36E655#0C050B#a68B12#a68B13" })
+        expect(getByCondition).toHaveBeenCalledWith(model.name, { 'id': '#36E655#0C050B#a68B12#a68B13' })
+        expect(addItem).toHaveBeenCalled()
+    })
+
+    it('should return palette.id true', () => {
+        requiredFiledValidation.mockReturnValue(true)
+        requiredTypeValidation.mockReturnValue(true)
+        isHEXColor.mockReturnValue(true)
+        isRGBColor.mockReturnValue(true)
+        // convertRGBtoHEX.mockReturnValue()  
+        getByCondition.mockReturnValue([])
+        const response = createPalette(palette)
+        expect(response.id).toEqual('#36E655#0C050B#a68B12#a68B13')
+    })
 
     describe('ERRORS', () => {
 
@@ -87,9 +118,9 @@ describe('CREATE PALETTE', () => {
             expect(() => createPalette(palette)).toThrow('not all colors are from the correct type (string or array with numbers)')
         })
 
-        it('should throw when not all colors are from the correct type',()=>{
-            const palette1 = { userName: 'abc', colors: [[12,54, 230, 85], [12, 5, 11],'#a68B12', '#a68B13'] }
-            const palette2 = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11],'#a68B12', '#a68B?2'] }
+        it('should throw when not all colors are from the correct type', () => {
+            const palette1 = { userName: 'abc', colors: [[12, 54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'] }
+            const palette2 = { userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B?2'] }
             expect(() => createPalette(palette1)).toThrow('the colors are not from real colors')
             expect(() => createPalette(palette2)).toThrow('the colors are not from real colors')
         })

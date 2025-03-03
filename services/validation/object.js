@@ -59,7 +59,7 @@ function requiredTypeValidation(obj, model) {
     }
     const typeOfValiditions = model.fields.filter(({ type }) => typeof type === 'string')
     const functionValidations = model.fields.filter(({ type }) => type instanceof Function)
-    
+
     const typeErrors = typeOfValiditions.filter(({ name, type }) => obj[name] && typeof obj[name] !== type)
     const functionErrors = functionValidations.filter(({ name, type }) => obj[name] && type(obj[name]) === false)
     const response = [...typeErrors, ...functionErrors].map(({ name }) => name)

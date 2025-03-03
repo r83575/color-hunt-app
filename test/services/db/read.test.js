@@ -13,7 +13,7 @@ describe('READ ALL', () => {
         fs.readFileSync.mockReset()
         path.join.mockReset()
     })
-    
+
     it('should return an array of data from existing data base json file ', () => {
         const model = 'test'
         path.join.mockReturnValue(`/folder/${model}.json`)

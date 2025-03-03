@@ -11,10 +11,10 @@ function dataContainsValue(data, value, prop) {
     if (value === undefined) {
         return false
     }
-    if (data.some(item =>typeof item !== 'string' && Object.keys(item).length > 0)) {
+    if (data.some(item => typeof item !== 'string' && Object.keys(item).length > 0)) {
         return data.some(item => item[prop] === value)
     }
-    else { 
+    else {
         return data.includes(value)
     }
 }

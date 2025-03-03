@@ -41,25 +41,25 @@ describe('ADD ITEM', () => {
 
     describe('ERRORS', () => {
         const model = 'test'
-        const item =  { x: 1, y: 2 }
+        const item = { x: 1, y: 2 }
         it('should throw error when fs.writeFileSync throws error', () => {
             fs.writeFileSync.mockImplementation(() => { throw Error('error from mock writeFileSync') })
-            expect(() => addItem( model,item)).toThrow('error from mock writeFileSync')
+            expect(() => addItem(model, item)).toThrow('error from mock writeFileSync')
         })
 
         it('should throe error when path.join throws error', () => {
             path.join.mockImplementation(() => { throw Error('error from mock join') })
-            expect(() => addItem( model , item)).toThrow('error from mock join')
+            expect(() => addItem(model, item)).toThrow('error from mock join')
         })
 
         it('should throw error when fs.mkdirSync throws erre', () => {
             fs.mkdirSync.mockImplementation(() => { throw Error('error from mock mkdirSync') })
-            expect(() => addItem( model , item)).toThrow('error from mock mkdirSync')
+            expect(() => addItem(model, item)).toThrow('error from mock mkdirSync')
         })
 
         it('should throw error when readAll throws error', () => {
-            readAll.mockImplementation(() => { throw Error('error from mock readAll')})
-            expect(() => addItem( model , item )).toThrow('error from mock readAll')
+            readAll.mockImplementation(() => { throw Error('error from mock readAll') })
+            expect(() => addItem(model, item)).toThrow('error from mock readAll')
         })
 
         it('should throw error when item is undefined', () => {
@@ -67,7 +67,7 @@ describe('ADD ITEM', () => {
         })
 
         it('should throw error when the model is not a string', () => {
-            expect(() => addItem([],item)).toThrow('the model is not string')
+            expect(() => addItem([], item)).toThrow('the model is not string')
         })
 
     })

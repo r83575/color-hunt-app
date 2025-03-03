@@ -38,6 +38,6 @@ describe('DATA CONTAINS VALUE', () => {
             expect(() => dataContainsValue(123)).toThrow('data must be an array')
             expect(() => dataContainsValue(true)).toThrow('data must be an array')
         })
-        
+
     })
 })

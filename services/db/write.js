@@ -6,10 +6,10 @@ const path = require('path')
 const { DATA_BASE_PATH = 'C:/temp-db' } = process.env
 
 function addItem(model, item) {
-    try {        
-        if(typeof(model)!="string"){
+    try {
+        if (typeof (model) != "string") {
             throw TypeError('the model is not string')
-        }         
+        }
         const data = readAll(model)
         if (!item) {
             throw TypeError('model must be defined')
