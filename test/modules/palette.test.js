@@ -68,17 +68,17 @@ describe('CREATE PALETTE', () => {
         expect(addItem).toHaveBeenCalled()
     })
 
-    it('should return and create new palette', () => {
+    it('should not return and not create new palette when this id exist', () => {
         requiredFiledValidation.mockReturnValue(true)
         requiredTypeValidation.mockReturnValue(true)
         isHEXColor.mockReturnValue(true)
         isRGBColor.mockReturnValue(true)
         // convertRGBtoHEX.mockReturnValue()          
-        getByCondition.mockReturnValue([])
+        getByCondition.mockReturnValue([palette])
         const response = createPalette(palette)
-        expect(response).toEqual({ userName: 'abc', colors: [[54, 230, 85], [12, 5, 11], '#a68B12', '#a68B13'], id: "#36E655#0C050B#a68B12#a68B13" })
+        expect(response).toEqual(undefined)
         expect(getByCondition).toHaveBeenCalledWith(model.name, { 'id': '#36E655#0C050B#a68B12#a68B13' })
-        expect(addItem).toHaveBeenCalled()
+        expect(addItem).not.toHaveBeenCalled()
     })
 
     it('should return palette.id true', () => {
