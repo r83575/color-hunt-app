@@ -1,5 +1,5 @@
 const { convertRGBtoHEX } = require('../services/convert')
-const { getByCondition } = require('../services/db/read')
+const { getByCondition, readAll } = require('../services/db/read')
 const { addItem } = require('../services/db/write')
 const { isHEXColor, isRGBColor } = require('../services/validation/color')
 const { modelState, requiredFiledValidation, requiredTypeValidation } = require('../services/validation/object')
@@ -65,4 +65,9 @@ function createPalette(palette) {
     }
 }
 
-module.exports = { createPalette }
+function getAllPalette(skip, count) {
+    const allPalettes =  readAll('palette');
+    return allPalettes.splice(skip,count)
+}
+
+module.exports = { createPalette, getAllPalette }
