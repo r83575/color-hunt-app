@@ -66,8 +66,8 @@ function createPalette(palette) {
 }
 
 function getAllPalette(skip, count) {
-    const allPalettes =  readAll('palette');
-    return allPalettes.splice(skip,count)
+    const allPalettes = readAll('palette');
+    return allPalettes.splice(skip, count)
 }
 
 module.exports = { createPalette, getAllPalette }
