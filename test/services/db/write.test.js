@@ -40,8 +40,13 @@ describe('ADD ITEM', () => {
     })
 
     describe('ERRORS', () => {
+
         const model = 'test'
         const item = { x: 1, y: 2 }
+        it('should throw error when item is undefined', () => {
+            expect(() => addItem(model)).toThrow('the item must be defined')
+        })
+
         it('should throw error when fs.writeFileSync throws error', () => {
             fs.writeFileSync.mockImplementation(() => { throw Error('error from mock writeFileSync') })
             expect(() => addItem(model, item)).toThrow('error from mock writeFileSync')
@@ -62,9 +67,6 @@ describe('ADD ITEM', () => {
             expect(() => addItem(model, item)).toThrow('error from mock readAll')
         })
 
-        it('should throw error when item is undefined', () => {
-            expect(() => addItem(model).toThrow('the item must be defined'))
-        })
 
         it('should throw error when the model is not a string', () => {
             expect(() => addItem([], item)).toThrow('the model is not string')

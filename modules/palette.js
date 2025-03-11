@@ -65,9 +65,21 @@ function createPalette(palette) {
     }
 }
 
-function getAllPalette(skip, count) {
+function getAllPalette(skip, count) {    
+    if(isNaN(skip)){
+        throw Error('the skip is not a number')
+    }
+    if(isNaN(count)&&!(count instanceof Array)){
+        throw Error('the count is not a number')
+    }
     const allPalettes = readAll('palette');
-    return allPalettes.splice(skip, count)
+    if(allPalettes.length < skip){
+        throw Error('the skip is bigger from the length arr')
+    }
+    if (allPalettes.length < count) {
+         return allPalettes
+    }
+    return palettes = allPalettes.splice(skip, count)
 }
 
 module.exports = { createPalette, getAllPalette }

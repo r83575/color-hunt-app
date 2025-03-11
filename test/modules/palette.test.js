@@ -1,6 +1,6 @@
-const { createPalette } = require('../../modules/palette')
+const { createPalette, getAllPalette } = require('../../modules/palette')
 const { convertRGBtoHEX } = require('../../services/convert')
-const { getByCondition } = require('../../services/db/read')
+const { getByCondition, readAll } = require('../../services/db/read')
 const { addItem } = require('../../services/db/write')
 const { isHEXColor, isRGBColor } = require('../../services/validation/color')
 const { modelState, requiredFiledValidation, requiredTypeValidation } = require('../../services/validation/object')
@@ -126,12 +126,63 @@ describe('CREATE PALETTE', () => {
         })
     })
 })
-//mock
-// expect(readAll).toHaveBeenCalledWith(model)
-// expect(fs.mkdirSync).not.toHaveBeenCalled()
 
-// expect(response).toBe(false)
-// expect(response).toContain('name')
-// expect(response).toBeInstanceOf(Array)
-// expect(response).toContain('name')
-// expect(fs.existsSync).toEqual(ARRAY)
+
+describe('GET ALL PALETTE', () => {
+
+    const ArrPalette = [
+        { "userName": "abc", "colors": [["25", "168", "203"], ["25", "168", "100"], "#a68B12", "#a68B13"], "id": "#25168203#25168203#25168100#a68B12#a68B13" },
+        { "userName": "abc", "colors": [[56, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#38E655#38E655#0C050B#a68B12#a68B13" },
+        { "userName": "abc", "colors": [[56, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#38E655#0C050B#a68B12#a68B13" },
+        { "userName": "abc", "colors": [[56, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#38E655#0C050B#a68B12#a68B13" },
+        { "userName": "abc", "colors": [["123", "234", "123"], ["122", "234", "123"], "#a12b54", "#b15a46"], "id": "#123234123#122234123#a12b54#b15a46" },
+        { "userName": "abc", "colors": [[55, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#37E655#0C050B#a68B12#a68B13" },
+        { "colors": ["#a12b35", [12, 25, 152], "#a52b69", [250, 120, 18]], "userName": "develop", "id": "#a12b35#0C1998#a52b69#FA7812" },
+        { "colors": ["#a12b35", [12, 25, 152], "#a52b69", [250, 120, 19]], "userName": "develop", "id": "#a12b35#0C1998#a52b69#FA7813" },
+        { "colors": ["#a12b35", [12, 25, 152], "#a52b68", [250, 120, 19]], "userName": "develop", "id": "#a12b35#0C1998#a52b68#FA7813" },
+        { "colors": ["#a12b35", "#a52b68", [12, 25, 152], [250, 120, 19]], "userName": "develop", "id": "#a12b35#a52b68#0C1998#FA7813" }
+    ]
+
+    it('should return count palettes from skip index', () => {
+        readAll.mockReturnValue(ArrPalette)
+        const skip = 3, count = 3;
+        const response = getAllPalette(skip, count)
+        expect(response).toEqual([{ "userName": "abc", "colors": [[56, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#38E655#0C050B#a68B12#a68B13" },
+        { "userName": "abc", "colors": [["123", "234", "123"], ["122", "234", "123"], "#a12b54", "#b15a46"], "id": "#123234123#122234123#a12b54#b15a46" },
+        { "userName": "abc", "colors": [[55, 230, 85], [12, 5, 11], "#a68B12", "#a68B13"], "id": "#37E655#0C050B#a68B12#a68B13" }])
+    })
+
+    it('should return empty array when count is 0', () => {
+        readAll.mockReturnValue(ArrPalette)
+        const skip = 1, count = 0;
+        const response = getAllPalette(skip, count)
+        expect(response).toEqual([])
+    })
+
+    it('should return all from readAll when the count bigger from the arr.length', () => {
+        readAll.mockReturnValue(ArrPalette)
+        const skip = 0, count = 50;
+        const response = getAllPalette(skip, count)
+        expect(response).toEqual(ArrPalette)
+    })
+
+    describe('ERRORS', () => {
+        it('should throw error when readAll throws error', () => {
+            const skip = 3, count = 3;
+            readAll.mockImplementation(() => { throw Error('error from mock readAll') })
+            expect(() => getAllPalette(skip, count)).toThrow('error from mock readAll')
+        })
+
+        it('should throw error when skip bigger from palettelength', () => {
+            const skip = 20, count = 3;
+            readAll.mockReturnValue(ArrPalette)
+            expect(() => getAllPalette(skip, count)).toThrow('the skip is bigger from the length arr')
+        })
+        it('should throw error when skip or count is not a number', () => {
+            const skip = 1, count = 4;
+            expect(() => getAllPalette('a', count)).toThrow('the skip is not a number')
+            expect(() => getAllPalette(skip, { x: 1 })).toThrow('the count is not a number')
+        })
+
+    })
+})

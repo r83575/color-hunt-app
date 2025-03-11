@@ -12,7 +12,7 @@ function addItem(model, item) {
         }
         const data = readAll(model)
         if (!item) {
-            throw TypeError('model must be defined')
+            throw TypeError('the item must be defined')
         }
         data.push(item)
 
