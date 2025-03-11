@@ -76,7 +76,6 @@ function getAllPalette(skip, count) {
     if(allPalettes.length < skip){
         throw Error('the skip is bigger from the length arr')
     }
-    console.log(allPalettes.length);
     if ((count+skip) > allPalettes.length ) {
         return allPalettes.splice(skip)
     }
