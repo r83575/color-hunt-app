@@ -222,23 +222,23 @@ describe('GET ALL PALETTE', () => {
         { "colors": ["#a12b35", "#a52b68", [12, 25, 152], [250, 120, 19]], "userName": "develop", "id": "#a12b35#a52b68#0C1998#FA7813" }])
     })
 
-    // describe('ERRORS', () => {
-    //     it('should throw error when readAll throws error', () => {
-    //         const skip = 3, count = 3;
-    //         readAll.mockImplementation(() => { throw Error('error from mock readAll') })
-    //         expect(() => getAllPalette(skip, count)).toThrow('error from mock readAll')
-    //     })
+    describe('ERRORS', () => {
+        it('should throw error when readAll throws error', () => {
+            const skip = 3, count = 3;
+            readAll.mockImplementation(() => { throw Error('error from mock readAll') })
+            expect(() => getAllPalette(skip, count)).toThrow('error from mock readAll')
+        })
 
-    //     it('should throw error when skip bigger from palettelength', () => {
-    //         const skip = 20, count = 3;
-    //         readAll.mockReturnValue(ArrPalette)
-    //         expect(() => getAllPalette(skip, count)).toThrow('the skip is bigger from the length arr')
-    //     })
-    //     it('should throw error when skip or count is not a number', () => {
-    //         const skip = 1, count = 4;
-    //         expect(() => getAllPalette('a', count)).toThrow('the skip is not a number')
-    //         expect(() => getAllPalette(skip, { x: 1 })).toThrow('the count is not a number')
-    //     })
+        it('should throw error when skip bigger from palettelength', () => {
+            const skip = 20, count = 3;
+            readAll.mockReturnValue(ArrPalette)
+            expect(() => getAllPalette(skip, count)).toThrow('the skip is bigger from the length arr')
+        })
+        it('should throw error when skip or count is not a number', () => {
+            const skip = 1, count = 4;
+            expect(() => getAllPalette('a', count)).toThrow('the skip is not a number')
+            expect(() => getAllPalette(skip, { x: 1 })).toThrow('the count is not a number')
+        })
 
-    // })
+    })
 })
