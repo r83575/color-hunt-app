@@ -1,0 +1,7 @@
+<div [style]="{height:getPXSize(),width:getPXSize(),margin:'20px'}">
+    <div *ngFor="let color of palette()?.colors; let i = index; let f = first; let l = last" 
+    [style.border-radius]="f===true?'8px 8px 0 0':l===true?'0 0 8px 8px':'0 0 0 0'"
+    [style.backgroundColor]="convertToHex(color)"
+    [style.height]="i===0?'45%':i===1?'30%':i===2?'17%':'8%'">
+</div>
+</div>

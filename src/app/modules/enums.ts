@@ -1,0 +1,3 @@
+export enum PALETTE_SIZE {
+    SMALL = 105, MEDIUM = 210, LARGE = 450
+}
