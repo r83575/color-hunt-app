@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component ,inject} from '@angular/core';
+import { Router  } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [Router],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+  private readonly router : Router = inject(Router)
   btnText: string = 'כניסה'
 
-  constructor(private _router:Router){}  
-  
   btnClick(){
-    this._router.navigate(['/login'])
+     this.router.navigate(['/login'])
   }
+  
 }
