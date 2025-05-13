@@ -1,8 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const paletteRouter = require('./routers/palette')
 const { startLogger, endLogger } = require('./utils/middlewares/logger')
 
 const app = express()
+app.use(cors())
 app.use(startLogger)
 app.get('/', (req, res, next) => {
     res.locals['response-content'] = 'message from the color-hunt server'
