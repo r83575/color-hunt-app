@@ -17,8 +17,8 @@ export const routes: Routes = [
         ]
     },
     { path: 'login', component: LoginComponent , children: [
-        { path: '', component: SigninComponent },
-        { path: 'signup', component: SignupComponent }
+        { path: 'sign-in', component: SigninComponent},
+        { path: 'sign-up', component: SignupComponent }
        
     ]},
     { path: '**', component: NotFoundComponent }

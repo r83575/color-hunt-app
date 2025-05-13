@@ -13,7 +13,7 @@ export class HeaderComponent {
   btnText: string = 'כניסה'
 
   btnClick(){
-     this.router.navigate(['/login'])
+     this.router.navigate(['/login/sign-in'])
   }
   
 }

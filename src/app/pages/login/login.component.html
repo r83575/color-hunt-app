@@ -1,9 +1,13 @@
-<router-outlet />
+<nav class="login-nav">
 <ul>
     <li>
-        <a routerLink="/login">Sign In</a>
+        <a routerLink="/login/sign-in" routerLinkActive="active">Sign In</a>
     </li>
     <li>
-        <a routerLink="/login/signup">Sign Up</a>
+        <a routerLink="/login/sign-up" routerLinkActive="active">Sign Up</a>
     </li>
 </ul>
+</nav>
+<div class="outlet-container">
+<router-outlet />
+</div>

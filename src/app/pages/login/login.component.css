@@ -1,0 +1,35 @@
+nav.login-nav {
+    border-bottom: 2px solid orange;
+    margin-top: 15px;
+}
+
+nav.login-nav ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding-left: 5px;
+}
+
+nav.login-nav ul li {
+    margin:0px 4px;
+}
+
+nav.login-nav ul li a {
+    border-radius: 5px 5px 0 0;
+    padding: 7px 10px;
+    text-decoration: none;
+    display: block;
+    color: orange;
+}
+
+nav.login-nav ul li a.active {
+    color: rgb(252, 240, 218);
+    background-color: orange;
+}
+
+div.outlet-container {
+    width: 40%;
+    margin: auto;
+    margin-top: 15px;
+}

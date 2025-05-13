@@ -1,1 +1,32 @@
-<p>signup works!</p>
+<fieldset>
+    <legend>New Acount</legend>
+    <form [formGroup]="signUpForm" (submit)="create()">
+        <p>
+            <input type="text" 
+            placeholder="username" 
+            formControlName="username">
+            <span>{{signUpForm.controls['username'].errors?.['required']}}</span>
+        </p>
+        <p>
+            <input type="password" 
+            placeholder="password" 
+            formControlName="password"
+            >
+        </p>
+        <p>
+            <input type="password" 
+            placeholder="confirm password" 
+            formControlName="confirmPassword"
+            >
+        </p>
+        <p>
+            <input type="checkbox" id="agreement"
+            formControlName="agree"
+            >
+            <label for="agreement">I agree to all</label>
+        </p>
+        <p>
+            <input type="submit" value="sign in">
+        </p>
+    </form>
+</fieldset>
