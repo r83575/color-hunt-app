@@ -1,5 +1,29 @@
-<div>
-    <div class="new-palette" >
-        <app-one-palette [palette]="newPalette" [size]="newSize" ></app-one-palette>
+<button (click)="savePalette()">save</button>
+
+<div class="new-palette">
+  <div
+    [style]="{ height: getPXSize(), width: getPXSize() }"
+  >
+    <div
+      class="palette-color"
+      *ngFor="let color of newPalette.colors; let i = index; let f = first; let l = last"
+      [style.backgroundColor]="colorToCss(color)"
+      [style.borderRadius]="
+        f ? '8px 8px 0 0' :
+        l ? '0 0 8px 8px' : '0'
+      "
+      [style.height]="
+        i===0 ? '45%' :
+        i===1 ? '30%' :
+        i===2 ? '17%' : '8%'
+      "
+    >
+      <input
+        type="color"
+        class="full-color-input"
+        [value]="colorToHex(color)"
+        (input)="updateColor($event, i)"
+      />
     </div>
+  </div>
 </div>

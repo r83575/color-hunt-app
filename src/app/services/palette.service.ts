@@ -8,12 +8,19 @@ import { Palette } from '../modules/interfaces';
 })
 export class PaletteService {
 
-  private readonly baseUrl ='http://192.168.42.22:8080'
+  private readonly baseUrl ='http://localhost:8080'
   private readonly http = inject(HttpClient)
 
   constructor() { }
 
   getAllPalette():Observable<Palette[]>{
       return this.http.get<Palette[]>(`${this.baseUrl}/palette/all`)
+  }
+
+  createPalette(palette: Palette): Observable<Palette> {
+    return this.http.post<Palette>(
+      `${this.baseUrl}/palette/create`,
+      palette
+    );
   }
 }
