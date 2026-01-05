@@ -2,7 +2,7 @@ require('dotenv').config()
 const fs = require('fs')
 const path = require('path')
 
-const { DATA_BASE_PATH = 'C:/temp-db' } = process.env
+const { DATA_BASE_PATH = path.resolve(__dirname, '../../data-base-example') } = process.env
 
 function readAll(model) {
     try {

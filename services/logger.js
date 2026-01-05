@@ -2,7 +2,7 @@ require('dotenv').config()
 const fs = require('fs')
 const path = require('path')
 
-const { LOGGER_PATH = 'C:temp-db', LOGGER_FILE = 'logger.log' } = process.env
+const { LOGGER_PATH = path.resolve(__dirname, '../data-base-example') , LOGGER_FILE = 'logger.log' } = process.env
 
 function writeToLog(data) {
     try {
