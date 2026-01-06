@@ -1,0 +1,27 @@
+{
+  "name": "color-hunt-server",
+  "version": "1.0.0",
+  "description": "the server of the color hunt project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "jest",
+    "test:coverage": "npm run test -- --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/h/תכנות ו תשפה/קבוצה ו-1/רותי כהן/vidislavsky/Node/color-hunt/server"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9"
+  },
+  "author": "ruti cohen",
+  "license": "MIT"
+}

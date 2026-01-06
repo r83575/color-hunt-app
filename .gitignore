@@ -1,0 +1,9 @@
+#develop
+/node_modules
+
+.env
+
+#tests
+/coverage
+
+/test/test

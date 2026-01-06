@@ -1,0 +1,82 @@
+[
+    {
+        "userName": "nature",
+        "colors": [
+            "#8BC34A",
+            "#CDDC39",
+            "#FFEB3B",
+            "#FFC107"
+        ],
+        "id": "#8BC34A#CDDC39#FFEB3B#FFC107"
+    },
+    {
+        "userName": "nature",
+        "colors": [
+            "#4CAF50",
+            "#8BC34A",
+            "#CDDC39",
+            "#FF9800"
+        ],
+        "id": "#4CAF50#8BC34A#CDDC39#FF9800"
+    },
+    {
+        "userName": "sunset",
+        "colors": [
+            "#FF5722",
+            "#FF9800",
+            "#FFC107",
+            "#FFEB3B"
+        ],
+        "id": "#FF5722#FF9800#FFC107#FFEB3B"
+    },
+    {
+        "userName": "system",
+        "colors": [
+            "#FF6B6B",
+            "#FFD93D",
+            "#6BCB77",
+            "#4D96FF"
+        ],
+        "id": "#FF6B6B#FFD93D#6BCB77#4D96FF"
+    },
+    {
+        "userName": "system",
+        "colors": [
+            "#FF9F1C",
+            "#FFBF69",
+            "#CBF3F0",
+            "#2EC4B6"
+        ],
+        "id": "#FF9F1C#FFBF69#CBF3F0#2EC4B6"
+    },
+    {
+        "userName": "system",
+        "colors": [
+            "#F94144",
+            "#F3722C",
+            "#F8961E",
+            "#F9844A"
+        ],
+        "id": "#F94144#F3722C#F8961E#F9844A"
+    },
+    {
+        "userName": "system",
+        "colors": [
+            "#577590",
+            "#43AA8B",
+            "#90BE6D",
+            "#F9C74F"
+        ],
+        "id": "#577590#43AA8B#90BE6D#F9C74F"
+    },
+    {
+        "userName": "system",
+        "colors": [
+            "#9B5DE5",
+            "#F15BB5",
+            "#FEE440",
+            "#00BBF9"
+        ],
+        "id": "#9B5DE5#F15BB5#FEE440#00BBF9"
+    }
+]
