@@ -1,0 +1,19 @@
+.new-palette{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+.palette-color {
+  position: relative;
+  width: 100%;
+}
+
+.full-color-input {
+  position: absolute;
+  inset: 0;          
+  width: 100%;
+  height: 100%;
+  opacity: 0;         
+  cursor: pointer;
+}

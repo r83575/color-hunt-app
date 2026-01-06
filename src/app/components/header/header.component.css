@@ -1,0 +1,10 @@
+.page-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 0 2px 2px gray;
+    background-color: white;
+}

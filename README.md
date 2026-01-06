@@ -1,115 +1,59 @@
+# ColorHuntApp
 
-# 🎨 Color Hunt App
-## 🖼️ Preview
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
 
-![App Preview](https://github.com/user-attachments/assets/b5faccb1-385a-43b7-9261-465a4cd2ef50)
+## Development server
 
-
-Full-stack web application for managing and creating color palettes.  
-Built with Angular (Client) and Node.js + Express (Server).  
-The server simulates a MongoDB-like database using local JSON files,  
-allowing data persistence without requiring a running MongoDB instance.
-
----
-
-## 📁 Project Structure
-
-```
-
-color-hunt-app/
-├── client/    → Angular frontend
-└── server/    → Node.js backend with local MongoDB-style JSON database
-
-````
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
+To start a local development server, run:
 
 ```bash
-git clone https://github.com/r83575/color-hunt-app.git
-cd color-hunt-app
-````
+ng serve
+```
 
----
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-### 2. Setup the Server
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-cd server
-npm install
+ng generate component component-name
 ```
 
-Create a new file named `.env` in the `server/` folder,
-and copy the content from `.env.example` into it.
-
-Then run the server:
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-npm start
+ng generate --help
 ```
 
-The server will run by default at:
-`http://localhost:8080`
+## Building
 
----
-
-### 3. Setup the Client
+To build the project run:
 
 ```bash
-cd ../client
-npm install
-npm start
+ng build
 ```
 
-The client will run by default at:
-`http://localhost:4200`
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-To **create a new palette**, navigate to:
-👉 `http://localhost:4200/create`
+## Running unit tests
 
----
-
-## ⚙️ Environment Variables
-
-Defined in `server/.env`:
-
-```env
-DATA_BASE_PATH=./data-base
-LOGGER_PATH=./data-base
-LOGGER_FILE=logger.log
-HOST=localhost
-PORT=8080
-```
-
-Use `.env.example` as a starting point and adjust if needed.
-
----
-
-## 🧪 Sample Data
-
-Example data and logs are available in:
-
-```
-server/data-base-example/
-```
-
-To see sample output, you can copy this folder into the path defined in your `.env` file.
-
----
-
-## 🧪 Running Tests (optional)
-
-In the `server/` folder:
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-npm test
+ng test
 ```
 
----
+## Running end-to-end tests
 
-## 📄 License
+For end-to-end (e2e) testing, run:
 
-This project is for educational purposes only.
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: Tahoma;
+}
+
+input {
+    font-family: Tahoma;
+}
+
+label {
+    font-size: smaller;
+}
+
+input[type="submit"],
+input[type="button"] {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    padding: 5px 15px;
+    background-color: rgb(248, 143, 143);
+    border-radius: 5px;
+    border-bottom: 3px solid rgb(212, 85, 85);
+    margin: auto;
+}
+
+input[type="submit"]:active,
+input[type="button"]:active {
+    top: 3px;
+    border-bottom: none;
+    box-shadow: 0 0 1px 1px rgb(212, 85, 85);
+}
